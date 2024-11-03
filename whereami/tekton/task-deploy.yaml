@@ -1,0 +1,16 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: deploy-to-kubernetes
+spec:
+  params:
+    - name: IMAGE
+      description: The name of the image to deploy.
+      type: string
+  steps:
+    - name: deploy
+      image: bitnami/kubectl:latest
+      script: |
+        kubectl apply -f /workspace/source/k8s/deployment.yaml
+  workspaces:
+    - name: source

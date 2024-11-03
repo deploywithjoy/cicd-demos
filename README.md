@@ -14,8 +14,39 @@ Three ways to manually deploy an application on Kubernetes:
 3. 
 
 ## Skaffold 
+
 ## Kustomize 
-..... 
+Checkout the `kustomize.yaml` mentioned in the README!
+
+The k8s deployment repo uses Kustomize to organize its deployment files. The following command will deploy the all of the required resources for the full `whereami` deployment.
+
+```bash
+$ cat k8s/kustomization.yaml
+resources:
+- ksa.yaml
+- deployment.yaml
+- service.yaml
+- configmap.yaml
+
+$ kubectl apply -k k8s
+serviceaccount/whereami created
+configmap/whereami created
+service/whereami created
+deployment.apps/whereami created
+```
+
+....
 
 ## Helm
 see whereami/helm-chart  
+
+## Tekton
+
+
+## Argo
+
+
+## Jenkins
+
+
+## Jenkins X
