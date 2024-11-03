@@ -131,3 +131,38 @@ Make sure to replace your-docker-registry with your actual Docker registry URL. 
 
 
 ## Jenkins X
+
+see whereami/jenkins-x 
+
+Below is an example of a Jenkins X pipeline configuration file (jenkins-x.yml) to deploy the whereami application to Kubernetes. This file assumes that you have a Dockerfile for building the application image and Kubernetes manifests for deploying the application.
+
+jenkins-x.yml Explanation
+
+pipelineConfig:
+    pipelines:
+        release:
+            pipeline:
+                agent: Specifies the Jenkins X agent to use.
+                stages: Defines the stages of the pipeline.
+                    build: Builds the application using a make build command.
+                    test: Runs tests using a make test command.
+                    buildDockerImage: Builds the Docker image using a make docker-build command.
+                    pushDockerImage: Pushes the Docker image to the registry using a make docker-push command.
+                    deploy: Deploys the application to Kubernetes using Helm.
+                        helmBuild: Builds the Helm chart.
+                        helmApply: Applies the Helm chart to the Kubernetes cluster.
+                        env: Sets the environment variable DEPLOY_NAMESPACE to specify the namespace for deployment.
+
+Prerequisites
+
+Makefile: Ensure you have a Makefile with the following targets:
+
++ build: Builds the application.
++ test: Runs the tests.
++ docker-build: Builds the Docker image.
++ docker-push: Pushes the Docker image to the registry.
++ Helm Chart: Ensure you have a Helm chart for the whereami application.
+
+Jenkins X Environment: Ensure you have a Jenkins X environment set up with the necessary configurations.
+
+Make sure to replace your-docker-registry with your actual Docker registry URL. Adjust the paths and commands as needed for your environment.
