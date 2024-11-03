@@ -1,0 +1,17 @@
+apiVersion: skaffold/v2beta21
+kind: Config
+metadata:
+  name: whereami
+build:
+  artifacts:
+    - image: your-docker-registry/whereami
+      context: .
+      docker:
+        dockerfile: Dockerfile
+  local:
+    push: false
+deploy:
+  kubectl:
+    manifests:
+      - k8s/deployment.yaml
+      - k8s/service.yaml
