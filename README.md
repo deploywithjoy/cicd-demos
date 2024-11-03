@@ -15,6 +15,36 @@ Three ways to manually deploy an application on Kubernetes:
 
 ## Skaffold 
 
+see whereami/skaffold
+
+In this folder is an example of a skaffold.yaml file to deploy the whereami application to Kubernetes. This file assumes that you have a Dockerfile for building the application image and Kubernetes manifests for deploying the application.
+
+`skaffold.yaml` Explanation
+
+apiVersion: Specifies the Skaffold API version.
+kind: Specifies the kind of configuration (Config).
+metadata:
+    name: The name of the Skaffold project.
+build:
+    artifacts: Defines the build artifacts.
+        image: The name of the Docker image to build.
+        context: The build context directory.
+        docker:
+            dockerfile: The path to the Dockerfile.
+    local:
+        push: Specifies whether to push the image to a remote registry (set to false for local development).
+deploy:
+    kubectl:
+        manifests: A list of Kubernetes manifest files to deploy.
+
+Prerequisites
+
++ Dockerfile: Ensure you have a Dockerfile for building the whereami application.
++ Kubernetes Manifests: Ensure you have Kubernetes manifests (e.g., deployment.yaml and service.yaml) for deploying the application in the k8s directory.
+
+Make sure to replace your-docker-registry/whereami:latest with your actual Docker registry URL and image tag. Adjust the paths and configurations as needed for your environment.
+
+
 ## Kustomize 
 Checkout the `kustomize.yaml` mentioned in the README!
 
