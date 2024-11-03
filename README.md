@@ -41,7 +41,7 @@ deployment.apps/whereami created
 see whereami/helm-chart  
 
 ## Tekton
-
+see whereami/tekton
 
 ## Argo
 see whereami/argo
