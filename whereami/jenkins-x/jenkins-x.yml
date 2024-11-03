@@ -1,0 +1,32 @@
+pipelineConfig:
+  pipelines:
+    release:
+      pipeline:
+        agent:
+          label: jenkins-jx-agent
+        stages:
+          - name: build
+            steps:
+              - command: "make build"
+                name: build
+          - name: test
+            steps:
+              - command: "make test"
+                name: test
+          - name: buildDockerImage
+            steps:
+              - command: "make docker-build"
+                name: buildDockerImage
+          - name: pushDockerImage
+            steps:
+              - command: "make docker-push"
+                name: pushDockerImage
+          - name: deploy
+            steps:
+              - command: "jx step helm build"
+                name: helmBuild
+              - command: "jx step helm apply"
+                name: helmApply
+                env:
+                  - name: DEPLOY_NAMESPACE
+                    value: "jx-staging"
