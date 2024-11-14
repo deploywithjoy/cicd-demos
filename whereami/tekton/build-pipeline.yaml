@@ -1,0 +1,32 @@
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  name: deploy-pipeline
+spec:
+  params:
+    - name: IMAGE
+      description: The name of the image to build and deploy.
+      type: string
+  workspaces:
+    - name: shared-workspace
+  tasks:
+    - name: build-image
+      taskRef:
+        name: build-docker-image
+      params:
+        - name: IMAGE
+          value: $(params.IMAGE)
+      workspaces:
+        - name: source
+          workspace: shared-workspace
+    - name: deploy
+      taskRef:
+        name: deploy-to-kubernetes
+      params:
+        - name: IMAGE
+          value: $(params.IMAGE)
+      runAfter:
+        - build-image
+      workspaces:
+        - name: source
+          workspace: shared-workspace
