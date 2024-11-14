@@ -4,7 +4,7 @@ metadata:
   name: whereami
 build:
   artifacts:
-    - image: your-docker-registry/whereami
+    - image: gcr.io/google-samples/whereami:v1.2.22
       context: .
       docker:
         dockerfile: Dockerfile
