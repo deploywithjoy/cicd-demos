@@ -1,11 +1,19 @@
 This repository contains demos and sample code for the 
-following talk at KubeCon 2024 SLC: 
+following talks: 
 
+- KubeCon/CloudNativeCon 2024 SLC: 
 [Deploy with Joy](https://events.linuxfoundation.org/kubecon-cloudnativecon-north-america/program/schedule/)
+- SoCal Linux Expo (SCALE) 2025 Pasadena: 
+[Bringing Joy to Kubernetes Deployments](https://www.socallinuxexpo.org/scale/22x/presentations/bringing-joy-kubernetes-deployments)
 
 ## Assumptions
 1. You have a cluster setup and you are authenticated against the cluster with the appropriate roles granted. 
 2. kubectl is set up on your terminal 
+
+## Demo Application
+The `whereami` application is a simple microservice that returns information about its environment, including the host name, IP address, and Kubernetes pod information.  It's a useful tool for demonstrating Kubernetes deployments and related CI/CD processes.  The source code and related deployment manifests are located in the `whereami` directory. 
+
+This application was forked from  https://github.com/GoogleCloudPlatform/kubernetes-engine-samples/tree/main/quickstarts/whereami (Thank You's to [Alex](https://github.com/theemadnes) for most of the dev work on the app)
 
 ## Manual Deploy 
 Three ways to manually deploy an application on Kubernetes:
@@ -14,7 +22,7 @@ Three ways to manually deploy an application on Kubernetes:
 2. `kubectl apply -f whereami/`
 
 3. `kubectl run \ --image=us-docker.pkg.dev/google-samples/containers/gke/whereami:v1.2.22 \ --expose --port 8080 whereami`
-4. 
+4. Push a yaml config via the command line
 ```
 $ cat << EOF | kubectl create -f -
 apiVersion: apps/v1
@@ -33,7 +41,7 @@ spec:
     spec:
       containers:
       - name: hello-kubecon
-        image: gcr.io/google-samples/whereami:v1.2.22
+        image: gcr.io/google-samples/whereami:v1.2.23
         ports:
         - containerPort: 8080
 EOF
