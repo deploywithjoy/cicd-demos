@@ -16,31 +16,35 @@ The `whereami` application is a simple microservice that returns information abo
 This application was forked from  https://github.com/GoogleCloudPlatform/kubernetes-engine-samples/tree/main/quickstarts/whereami (Thank You's to [Alex](https://github.com/theemadnes) for most of the dev work on the app)
 
 ## Manual Deploy 
+*Note: run the following in the * whereami-cicd directory*\
+
+`cd whereami-cicd`
+
 Three ways to manually deploy an application on Kubernetes:
 
 1. `kubectl apply -f whereami.yaml`
 2. `kubectl apply -f whereami/`
 
-3. `kubectl run \ --image=us-docker.pkg.dev/google-samples/containers/gke/whereami:v1.2.22 \ --expose --port 8080 whereami`
+3. `kubectl run \ --image=us-docker.pkg.dev/google-samples/containers/gke/whereami:v1.2.23 \ --expose --port 8080 whereami`
 4. Push a yaml config via the command line
 ```
 $ cat << EOF | kubectl create -f -
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: hello-kubecon
+  name: hello-deploy
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: hello-kubecon
+      app: hello-deploy
   template:
     metadata:
       labels:
-        app: hello-kubecon
+        app: hello-deploy
     spec:
       containers:
-      - name: hello-kubecon
+      - name: hello-deploy
         image: gcr.io/google-samples/whereami:v1.2.23
         ports:
         - containerPort: 8080
