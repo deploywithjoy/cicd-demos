@@ -166,11 +166,9 @@ Make sure to replace https://github.com/your-repo/whereami.git with the actual U
 
 ## Jenkins
 
-GitHub Copilot
-Sure! Below is an example of a Jenkins pipeline script (Jenkinsfile) to deploy the whereami application to Kubernetes. This script assumes that you have a Dockerfile for building the application image and Kubernetes manifests for deploying the application.
+Below is an example of a Jenkins pipeline script (Jenkinsfile) to deploy the whereami application to Kubernetes. This script assumes that you have a Dockerfile for building the application image and Kubernetes manifests for deploying the application.
 
-Jenkinsfile
-Explanation
+Jenkinsfile Explanation
 
 environment:
 
