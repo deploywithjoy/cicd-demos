@@ -1,0 +1,15 @@
+nameSuffix: "-backend"
+labels:
+- includeSelectors: true
+  includeTemplates: true
+  pairs:
+    app: whereami-backend
+resources:
+- ../k8s
+patches:
+- path: cm-flag.yaml
+  target:
+    kind: ConfigMap
+- path: service-type.yaml
+  target:
+    kind: Service

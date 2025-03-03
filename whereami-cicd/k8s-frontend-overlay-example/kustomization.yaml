@@ -1,9 +1,9 @@
-nameSuffix: "-echo-headers"
+nameSuffix: "-frontend"
 labels:
 - includeSelectors: true
   includeTemplates: true
   pairs:
-    app: whereami-echo-headers
+    app: whereami-frontend
 resources:
 - ../k8s
 patches:
