@@ -85,7 +85,7 @@ Make sure to replace your-docker-registry/whereami:latest with your actual Docke
 
 
 ## Kustomize 
-Checkout the `kustomize.yaml` mentioned in the README!
+Checkout the `kustomize.yaml` mentioned in the `whereami/README`!
 
 The k8s deployment repo uses Kustomize to organize its deployment files. The following command will deploy the all of the required resources for the full `whereami` deployment.
 
