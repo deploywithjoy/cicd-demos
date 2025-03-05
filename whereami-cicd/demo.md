@@ -2,7 +2,7 @@
 Based off samples in the whereami-cicd directory 
 
 # About the Cluster (EP)
-- [minikube] (https://minikube.sigs.k8s.io/docs/start/?arch=%2Fmacos%2Farm64%2Fstable%2Fbinary+download) 
+- [minikube](https://minikube.sigs.k8s.io/docs/start/?arch=%2Fmacos%2Farm64%2Fstable%2Fbinary+download) 
 - open docker desktop
 - `minikube start` 
 - you'll see the `minikube` cluster in your Docker Desktop status will read "Running"
@@ -10,15 +10,19 @@ Based off samples in the whereami-cicd directory
 
 ```
 kubectl run --image=us-docker.pkg.dev/google-samples/containers/gke/whereami:v1.2.23 --expose --port 8080 whereami
+
 service/whereami created
 pod/whereami created
 ```
 
 It's easy to get started with a local cluster!
 
-- 
-
 ## Skaffold Basics (MM)
+```
+kubectl create namespace skaffold
+skaffold dev 
+```
+
 
 ## Kustomize Basics (EP)
 
