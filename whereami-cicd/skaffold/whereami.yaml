@@ -1,3 +1,6 @@
+# vanilla setup for whereami 
+# kubectl apply -f whereami.yaml 
+# rendered from k8s/ kustomize directory 
 apiVersion: v1
 kind: ServiceAccount
 metadata:
@@ -19,22 +22,6 @@ metadata:
   labels:
     app: whereami
   name: whereami
----
-apiVersion: v1
-kind: Service
-metadata:
-  labels:
-    app: whereami
-  name: whereami
-spec:
-  ports:
-  - name: http
-    port: 80
-    protocol: TCP
-    targetPort: 8080
-  selector:
-    app: whereami
-  type: LoadBalancer
 ---
 apiVersion: apps/v1
 kind: Deployment

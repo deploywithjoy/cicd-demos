@@ -1,0 +1,48 @@
+apiVersion: skaffold/v4beta12
+kind: Config
+build:
+  artifacts:
+    - image: whereami
+      context: whereami
+      docker: 
+        dockerfile: Dockerfile
+deploy: 
+  kubectl: {}
+profiles:
+  - name: local
+    build:
+      local: 
+        tryImportMissing: true
+    deploy:
+      kubectl: {} 
+    manifests:
+      rawYaml:
+          - whereami-cicd/skaffold/whereami.yaml
+          - whereami-cicd/skaffold/service-clusterip.yaml
+    portForward:
+      - resourceType: deployment
+        resourceName: whereami
+        port: 8080  
+        localPort: 9001
+    activation:
+      - kubeContext: minikube
+      - command: dev
+  - name: helm 
+    deploy: 
+      helm: 
+        releases: 
+        - name: whereami-helm 
+          chartPath: whereami-cid/helm-chart
+    manifests: 
+      helm:
+        releases:
+        - name: whereami-helm
+          chartPath: whereami-cid/helm-chart
+  - name: kustomize
+    manifests: 
+      kustomize: 
+        paths:
+          - whereami-cid/k8s
+          - whereami-cicd/k8as-frontend-overlay-example
+
+        
