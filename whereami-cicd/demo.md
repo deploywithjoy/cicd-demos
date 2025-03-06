@@ -134,6 +134,7 @@ helm search hub argocd
 ```
 helm repo add argo https://argoproj.github.io/argo-helm
 
+helm repo list 
 helm search repo 
 
 helm repo add gitlab https://charts.gitlab.io/
@@ -145,9 +146,9 @@ helm search repo argo --version 1.10.1
 
 - Install directly from a private oci repository
 ```
-helm show values oci://us-docker.pkg.dev/google-samples/charts/whereami --version 1.2.23
-
 helm install whereami-remote oci://us-docker.pkg.dev/google-samples/charts/whereami --version 1.2.23
+
+helm show values oci://us-docker.pkg.dev/google-samples/charts/whereami --version 1.2.23
 
 helm install whereami-local ./whereami-cicd/helm-chart --namespace helm --create-namespace
 
@@ -166,7 +167,8 @@ helm status whereami-be -n helm
 
 ```
 kubectl create namespace skaffold
-skaffold init
+skaffold dev
+skaffold 
 
 ```
 - Using Kustomize with Skaffold 
