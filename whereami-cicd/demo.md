@@ -29,7 +29,12 @@ It's easy to get started with a local cluster!
 
 In the `whereami` application folder we have examples of using `kustomize` to deploy overlays on the k8s base layer.
 Let's take a look at two!
- 
+
+To get a sense of what our cluster looks like before we start making changes, run a 
+```
+$ kubectl describe pod
+```
+
 An example deploy overlays `whereami` using the manifests from [k8s-backend-overlay-example](k8s-backend-overlay-example)
 
 ```bash
@@ -72,6 +77,10 @@ patches:
     kind: Service
 ```
 
+Check it out in the cluster 
+```
+$ kubectl describe pod
+```
 #### Step 2 - Deploy the whereami frontend
 
 Now we're going to deploy the `whereami` frontend from the `k8s-frontend-overlay-example` folder. The configmap in this folder shows how the frontend is configured differently from the backend:
@@ -96,6 +105,12 @@ serviceaccount/whereami-frontend created
 configmap/whereami-frontend created
 service/whereami-frontend created
 deployment.apps/whereami-frontend created
+```
+
+
+Check it out in the cluster to see all the changes!
+```
+$ kubectl describe pod
 ```
 
 Base: k8s/
