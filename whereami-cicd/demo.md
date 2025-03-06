@@ -9,27 +9,21 @@ Based off samples in the whereami-cicd directory
 -  in the terminal run the containerized application!
 
 > **OPTION:**  
-> To run Minikube using poman and cri-o:\
+> To run Minikube using podman and cri-o:\
 > `minikube start --driver=podman --container-runtime=cri-io`
 
 ```
-kubectl run --image=us-docker.pkg.dev/google-samples/containers/gke/whereami:v1.2.23 --expose --port 8080 whereami
+$ kubectl run --image=us-docker.pkg.dev/google-samples/containers/gke/whereami:v1.2.23 --expose --port 8080 whereami
 
-service/whereami created
-pod/whereami created
+  service/whereami created
+  pod/whereami created
+
+$ kubectl get pods 
+$ kubectl describe pod whereami
+
 ```
 
 It's easy to get started with a local cluster!
-
-## Skaffold Basics (MM)
-- Create a skaffold yaml file using `skaffold init`
-- View the existing `skaffold.yaml` file
-- Run `skaffold dev` to start a development environment
-
-```
-kubectl create namespace skaffold
-skaffold dev
-```
 
 ## Kustomize Basics (EP)
 
@@ -150,4 +144,15 @@ helm status whereami-be -n helm
 
 ```
 
-## Using Kustomize and Helm with Skaffold (MM)
+## Skaffold (MM)
+- Create a skaffold yaml file using `skaffold init`
+- View the existing `skaffold.yaml` file
+- Run `skaffold dev` to start a development environment
+
+```
+kubectl create namespace skaffold
+skaffold init
+
+```
+- Using Kustomize with Skaffold 
+- Using Helm with Skaffold 
