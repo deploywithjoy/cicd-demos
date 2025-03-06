@@ -8,6 +8,10 @@ Based off samples in the whereami-cicd directory
 - you'll see the `minikube` cluster in your Docker Desktop status will read "Running"
 -  in the terminal run the containerized application!
 
+> **OPTION:**  
+> To run Minikube using poman and cri-o:\
+> `minikube start --driver=podman --container-runtime=cri-io`
+
 ```
 kubectl run --image=us-docker.pkg.dev/google-samples/containers/gke/whereami:v1.2.23 --expose --port 8080 whereami
 
@@ -18,11 +22,14 @@ pod/whereami created
 It's easy to get started with a local cluster!
 
 ## Skaffold Basics (MM)
+- Create a skaffold yaml file using `skaffold init`
+- View the existing `skaffold.yaml` file
+- Run `skaffold dev` to start a development environment
+
 ```
 kubectl create namespace skaffold
-skaffold dev 
+skaffold dev
 ```
-
 
 ## Kustomize Basics (EP)
 
@@ -106,9 +113,41 @@ kubectl apply -k [pattern]
 ```
 
 ## Helm Basics (MM)
+- This repo's helm Charts are in [helm-chart](helm-chart)
+- Search or add helm charts on [Artifact Hub](https://artifacthub.io)
+
 ```
-helm search hub where                                                      
-helm install whereami oci://us-docker.pkg.dev/google-samples/charts/whereami –version 1.2.23
+helm search hub                              
+helm search hub argocd 
+```
+
+- Search and add a repository:
+```
+helm repo add argo https://argoproj.github.io/argo-helm
+
+helm search repo 
+
+helm repo add gitlab https://charts.gitlab.io/
+
+helm search repo --version 1.10.1 
+helm search repo argo --version 1.10.1 
+```
+(Repos have more flexibility for searching including versions and regexp)
+
+- Install directly from a private oci repository
+```
+helm show values oci://us-docker.pkg.dev/google-samples/charts/whereami --version 1.2.23
+
+helm install whereami-remote oci://us-docker.pkg.dev/google-samples/charts/whereami --version 1.2.23
+
+helm install whereami-local ./whereami-cicd/helm-chart --namespace helm --create-namespace
+
+helm install whereami-be oci://us-docker.pkg.dev/google-samples/charts/whereami --version 1.2.23 \
+  --set suffix=-backend,config.metadata=backend,service.type=ClusterIP
+
+helm list --all-namespaces
+helm status whereami-be -n helm 
+
 ```
 
 ## Using Kustomize and Helm with Skaffold (MM)

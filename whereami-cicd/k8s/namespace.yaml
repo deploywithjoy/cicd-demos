@@ -1,0 +1,31 @@
+# Create namespaces for dev, argo, helm, jenkins, jenkinsx, tekton
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: dev
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: argocd
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: helm
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: jenkins
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: jenkinsx
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: tekton
+
