@@ -3,10 +3,10 @@ Based off samples in the whereami-cicd directory
 
 # About the Cluster (EP)
 - [minikube](https://minikube.sigs.k8s.io/docs/start/?arch=%2Fmacos%2Farm64%2Fstable%2Fbinary+download) 
-- open docker desktop
+- Open docker desktop
 - `minikube start` 
-- you'll see the `minikube` cluster in your Docker Desktop status will read "Running"
--  in the terminal run the containerized application!
+- You'll see the `minikube` cluster in your Docker Desktop status will read "Running"
+- In the terminal run the containerized application!
 
 > **OPTION:**  
 > To run Minikube using podman and cri-o:\
@@ -165,11 +165,15 @@ helm status whereami-be -n helm
 - View the existing `skaffold.yaml` file
 - Run `skaffold dev` to start a development environment
 
+If minikube is not running, start minikube.
 ```
-kubectl create namespace skaffold
+minikube start
+```
+To run development environment: 
+```
 skaffold dev
-skaffold 
-
 ```
-- Using Kustomize with Skaffold 
-- Using Helm with Skaffold 
+- In a new terminal window run `curl http://127.0.0.1:9001 | jq`
+- see deployment in cluster before and after
+- Skaffold Manifests are in the [skaffold](skaffold) directory 
+- See examples for using kustomize/helm with skaffold in the [../skaffold.yaml](../skaffold.yaml) file
